@@ -4,6 +4,8 @@ import { connect } from "../../utils/api";
 import { AppContext } from "../App";
 
 const Auth: React.FC = () => {
+  const [message, setMessage] = React.useState('');
+
   const navigate = useNavigate();
 
   const { setAppToken } = React.useContext(AppContext);
@@ -14,13 +16,21 @@ const Auth: React.FC = () => {
     if (token === process.env.REACT_APP_WALLET_TOKEN) {
       setAppToken(token);
       navigate('/');
+    } else {
+      setMessage(`You aren't in the db`);
     }
   };
 
   return (
-    <button onClick={handleConnect}>
-      Login
-    </button>
+    <>
+      <button onClick={handleConnect}>
+        Login
+      </button>
+
+      <div>
+        { message }
+      </div>
+    </>
   );
 };
 
