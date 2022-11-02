@@ -1,0 +1,1 @@
+export const getFormattedBallance = (value: string): number => Math.round(Number(value)) / 1e18;
